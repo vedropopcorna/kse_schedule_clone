@@ -1,0 +1,41 @@
+
+
+TODO:
+	1. Add support of online groups (check with project managers if teacher need an room for online lesson). Please add is_online flag for Room and Lesson classes, and also add constaint smt like following:
+
+	```
+	def room_online_ofline_conflict(constraint_factory):
+    return constraint_factory \
+        .forEach(LessonClass) \
+        .filter(lambda lesson: lesson.room is not None and
+                lesson.is_online == lesson.room.is_online) \
+        .penalize("Room capacity conflict", HardSoftScore.ONE_HARD)
+	```
+	2. Review log message with project managers (please check "This groups doesnt have pupils" logging output)
+    3. Create matrix of group intersection (inpired by self.get_group_intersections method), dict -> pandas dataframe -> excel
+    4. Fixing typos
+
+
+Commands:
+
+# Run project with Docker container
+
+docker run -it -p 8501:8501 -v "$(pwd):/usr/src/app" streamlit-optapy-app
+
+
+# Run project with Docker container with bash 
+
+docker run -it -p 8501:8501 -v "$(pwd):/usr/src/app" streamlit-optapy-app /bin/bash
+
+
+
+
+Links:
+
+# Input data
+
+https://docs.google.com/spreadsheets/d/1xUAIhgQDTr4FUGqIFMBzOv5ojqwMyEe0YTZLhKwucXg/edit#gid=1752456031
+
+#What is Optapy + scheduling problem
+
+https://www.optaplanner.org/blog/2021/10/05/ANewAIConstraintSolverForPythonOptaPy.html
